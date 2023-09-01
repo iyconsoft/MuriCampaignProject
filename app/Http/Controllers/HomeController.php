@@ -32,7 +32,7 @@ class HomeController extends Controller
     }
 	public function ussdDownload(Request $request)
 	{
-		if(isset($request->searchItem))
+		if(isset($request->searchItem) || 1==1)
 		{
 			$Where = " 1=1 ";
 			if(isset($request->msisdn) && $request->msisdn != "")
@@ -76,7 +76,7 @@ where ".$Where;
 		$columnSortOrder = $order_arr[0]['dir']; // asc or desc
 		$searchValue = $search_arr['value']; // Search value
 		
-		if(isset($request->searchItem))
+		if(isset($request->searchItem) || 1==1)
 		{
 			$Where = " 1=1 ";
 			if(isset($request->msisdn) && $request->msisdn != "")
@@ -126,7 +126,7 @@ limit ".$start.", ".$rowperpage);
     }
 	public function paymentDownload(Request $request)
 	{
-		if(isset($request->searchItem))
+		if(isset($request->searchItem) || 1==1)
 		{
 			$Where = " 1=1 ";
 			if(isset($request->msisdn) && $request->msisdn != "")
@@ -174,7 +174,7 @@ where ".$Where;
 		$columnSortOrder = $order_arr[0]['dir']; // asc or desc
 		$searchValue = $search_arr['value']; // Search value
 		
-		if(isset($request->searchItem))
+		if(isset($request->searchItem) || 1==1)
 		{
 			$Where = " 1=1 ";
 			if(isset($request->msisdn) && $request->msisdn != "")
