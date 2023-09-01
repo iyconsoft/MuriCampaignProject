@@ -298,6 +298,7 @@ class UssdController extends Controller
 			
 		$info_UssdUser = UssdUser::Where('payment_reference', $decodeData->paymentReference)->First();
 		$info_UssdUser->is_paid = "1";
+		$info_UssdUser->payment_date = date("Y-m-d H:i:s");
 		$info_UssdUser->Save();
 		
 		$Message = "Thank you ".$info_UssdUser->name." for your contribution towards rescuing our state. Together a new Kogi is possible.".$this->newLine."From: Alh. Murtala Yakubu Ajaka (MURI)";
