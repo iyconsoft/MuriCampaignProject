@@ -19,7 +19,7 @@ class UssdController extends Controller
 		$gateway = $request->gateway;
 		 
 		$menuSession = MenuSession::Where('msisdn',$msisdn)->First();
-		if(!$menuSession || $message == "*8011*23")
+		if(!$menuSession || $message == "*8011*23#" || $message == "8011*23" || $message == "*8011*23")
 		{
 			
 			DB::delete("delete from menu_session where msisdn='".$msisdn."'");
@@ -72,13 +72,40 @@ class UssdController extends Controller
 				
 				case '3':
 					
+					$problem = 'Others';
+					switch($message)
+					{
+						case '1':
+							$problem = 'Road';
+						break;
+						case '2':
+							$problem = 'Water';
+						break;
+						case '3':
+							$problem = 'Health Care';
+						break;
+						case '4':
+							$problem = 'Education';
+						break;
+						case '5':
+							$problem = 'Electricity';
+						break;
+						case '6':
+							$problem = 'Security';
+						break;
+						case '7':
+							$problem = 'Others';
+						break;
+					}
+
+					
 					$Message = "Kindly Mention Any Priority Project (s) that require (s) Urgent Government Attention under MURI".$this->newLine."1. Flood Hazard".$this->newLine."2. Health Care".$this->newLine."3. Education".$this->newLine."4. Electricity".$this->newLine."5. Security".$this->newLine."6. Food Security".$this->newLine."7. Others";
 					
 					
 					$output['operation'] = "continue";		
 					$output['message'] = $Message;
 					
-					$menuSession->problem = $message;
+					$menuSession->problem = $problem;
 					$menuSession->keyword = $message;
 					$menuSession->level = 5;
 					$menuSession->save();
@@ -86,12 +113,38 @@ class UssdController extends Controller
 				
 				case '5':
 					
+					$priorty_project = 'Others';
+					switch($message)
+					{
+						case '1':
+							$priorty_project = 'Flood Hazard';
+						break;
+						case '2':
+							$priorty_project = 'Health Care';
+						break;
+						case '3':
+							$priorty_project = 'Education';
+						break;
+						case '4':
+							$priorty_project = 'Electricity';
+						break;
+						case '5':
+							$priorty_project = 'Security';
+						break;
+						case '6':
+							$priorty_project = 'Food Security';
+						break;
+						case '7':
+							$priorty_project = 'Others';
+						break;
+					}
+					
 					$Message = "Hon. Muri will personally acknowledge your support".$this->newLine."Select Amount".$this->newLine."1. 200".$this->newLine."2. 300".$this->newLine."3. 400".$this->newLine."4. 500".$this->newLine."5. 1000";
 					
 					$output['operation'] = "continue";		
 					$output['message'] = $Message;
 					
-					$menuSession->priorty_project = $message;
+					$menuSession->priorty_project = $priorty_project;
 					$menuSession->keyword = $message;
 					$menuSession->level = 6;
 					$menuSession->save();

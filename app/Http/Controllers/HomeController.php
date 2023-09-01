@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\UssdUser;
 use DB;
+use App\Exports\UssdExport;
+use App\Exports\PaymentExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class HomeController extends Controller
 {
@@ -27,7 +30,35 @@ class HomeController extends Controller
     {
         return view('ussd');
     }
-	
+	public function ussdDownload(Request $request)
+	{
+		if(isset($request->searchItem))
+		{
+			$Where = " 1=1 ";
+			if(isset($request->msisdn) && $request->msisdn != "")
+			{
+				$Where .= ' and msisdn = "'.$request->msisdn.'"';
+			}
+			if(isset($request->start_create_date) && $request->start_create_date != "" && isset($request->end_create_date) && $request->end_create_date != "")
+			{
+				$Where .= ' and DATE(created_at) between  "'.$request->start_create_date.'" and "'.$request->end_create_date.'"';
+			}
+			
+			$Query = "SELECT msisdn, name, local_area, problem, priorty_project, amount, created_at FROM `ussd_users`
+where ".$Where;
+
+		}
+		else
+		{
+			$total_amount = 0;
+			$totalRecords = $totalRecordswithFilter = 0;
+			$info_Datas =  [];
+		}
+		
+		$exp_UssdExport = new UssdExport;
+		$exp_UssdExport->Query = $Query;
+		return Excel::download($exp_UssdExport, 'USSD.xlsx');
+	}
 	public function ussdGrid(Request $request)
     {
 		//print_r($request->All());
@@ -93,7 +124,39 @@ limit ".$start.", ".$rowperpage);
     {
         return view('payment');
     }
-	
+	public function paymentDownload(Request $request)
+	{
+		if(isset($request->searchItem))
+		{
+			$Where = " 1=1 ";
+			if(isset($request->msisdn) && $request->msisdn != "")
+			{
+				$Where .= ' and msisdn = "'.$request->msisdn.'"';
+			}
+			if(isset($request->is_paid) && $request->is_paid != "")
+			{
+				$Where .= ' and is_paid = "'.$request->is_paid.'"';
+			}
+			if(isset($request->start_payment_date) && $request->start_payment_date != "" && isset($request->end_payment_date) && $request->end_payment_date != "")
+			{
+				$Where .= ' and DATE(payment_date) between  "'.$request->start_payment_date.'" and "'.$request->end_payment_date.'"';
+			}
+			
+			$Query = "SELECT msisdn, name, local_area, amount, CASE WHEN is_paid='1' THEN 'Yes' ELSE 'No' END as is_paid, created_at FROM `ussd_users`
+where ".$Where;
+
+		}
+		else
+		{
+			$total_amount = 0;
+			$totalRecords = $totalRecordswithFilter = 0;
+			$info_Datas =  [];
+		}
+		
+		$exp_PaymentExport = new PaymentExport;
+		$exp_PaymentExport->Query = $Query;
+		return Excel::download($exp_PaymentExport, 'Payment.xlsx');
+	}
 	public function paymentGrid(Request $request)
     {
 		//print_r($request->All());

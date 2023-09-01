@@ -18,7 +18,7 @@
     <div class="card-body">
     	 <div class="row">
            <div class="col-md-12 m-2" style="text-align: right;">  
-            <!--<Button class="btn btn-default" id="Export">Export</Button>-->
+           	<Button class="btn btn-default" id="Export">Export</Button>
            </div>
     	 </div>
     	 <div class="row">
