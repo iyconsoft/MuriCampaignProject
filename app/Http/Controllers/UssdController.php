@@ -99,7 +99,7 @@ class UssdController extends Controller
 					}
 
 					
-					$Message = "Kindly Mention Any Priority Project (s) that require (s) Urgent Government Attention under MURI".$this->newLine."1. Flood Hazard".$this->newLine."2. Health Care".$this->newLine."3. Education".$this->newLine."4. Electricity".$this->newLine."5. Security".$this->newLine."6. Food Security".$this->newLine."7. Others";
+					$Message = "Select Project that requires Urgent Government Attention".$this->newLine."1. Flood Hazard".$this->newLine."2. Health Care".$this->newLine."3. Education".$this->newLine."4. Electricity".$this->newLine."5. Security".$this->newLine."6. Food Security".$this->newLine."7. Others";
 					
 					
 					$output['operation'] = "continue";		
