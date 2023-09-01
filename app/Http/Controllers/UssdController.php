@@ -202,6 +202,7 @@ class UssdController extends Controller
 					$output['operation'] = "end";		
 					$output['message'] = $Message;
 					
+					\Log::info("APP_ENV:".env('APP_ENV'));
 					if(env('APP_ENV')=="production")
 					{
 						\Log::info("Send SMS: http://3.131.19.214:8802/?phonenumber=234".substr($msisdn,-10)."&text=".urlencode($Message)."&sender=SELFSERVE&user=selfserve&password=1234567891");
