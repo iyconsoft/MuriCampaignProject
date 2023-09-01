@@ -30,6 +30,14 @@
                          <input type="text" class="form-control" name="msisdn" id="msisdn"   />
                       </div>
                       <div class="col-md-3">
+                         <label for="charge_type">Problem:</label>
+                         <input type="text" class="form-control" name="problem" id="problem"   />
+                      </div>
+                      <div class="col-md-3">
+                         <label for="charge_type">Project:</label>
+                         <input type="text" class="form-control" name="priorty_project" id="priorty_project"   />
+                      </div>
+                      <div class="col-md-3">
                          <label for="charge_type">Create date:</label>
                          <input type="text" class="form-control daterangepicker2" name="create_date" id="create_date"   />
                       </div>
@@ -103,6 +111,8 @@ var table = $('#dataTable').DataTable({
 $('.searchBtn').on('click', function (e) { 
 	
 	var msisdn = $("#msisdn").val();
+	var problem = $("#problem").val();
+	var priorty_project = $("#priorty_project").val();
 	var start_create_date = "";
 	var end_create_date = "";
 	if($('#create_date').val() != "")
@@ -110,7 +120,7 @@ $('.searchBtn').on('click', function (e) {
 		start_create_date = $('#create_date').data('daterangepicker').startDate.format('YYYY-MM-DD');
 		end_create_date = $('#create_date').data('daterangepicker').endDate.format('YYYY-MM-DD');
 	}
-	$('#dataTable').DataTable().ajax.url( "{{url('ussd/grid')}}/?searchItem=true&msisdn="+msisdn+"&start_create_date="+start_create_date+"&end_create_date="+end_create_date).load();
+	$('#dataTable').DataTable().ajax.url( "{{url('ussd/grid')}}/?searchItem=true&msisdn="+msisdn+"&problem="+problem+"&priorty_project="+priorty_project+"&start_create_date="+start_create_date+"&end_create_date="+end_create_date).load();
 
 });
 
@@ -123,6 +133,8 @@ $('.clearBtn').on('click', function (e) {
 
 $(document).on('click', '#Export', function (e) { 
 	var msisdn = $("#msisdn").val();
+	var problem = $("#problem").val();
+	var priorty_project = $("#priorty_project").val();
 	var start_create_date = "";
 	var end_create_date = "";
 	if($('#create_date').val() != "")
@@ -131,7 +143,7 @@ $(document).on('click', '#Export', function (e) {
 		end_create_date = $('#create_date').data('daterangepicker').endDate.format('YYYY-MM-DD');
 	}
 	
-	var URL = "{{url('ussd/export')}}/?searchItem=true&msisdn="+msisdn+"&start_create_date="+start_create_date+"&end_create_date="+end_create_date;
+	var URL = "{{url('ussd/export')}}/??searchItem=true&msisdn="+msisdn+"&problem="+problem+"&priorty_project="+priorty_project+"&start_create_date="+start_create_date+"&end_create_date="+end_create_date;
 	
 	downloadURI(URL);
 });

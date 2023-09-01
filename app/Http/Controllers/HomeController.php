@@ -39,6 +39,14 @@ class HomeController extends Controller
 			{
 				$Where .= ' and msisdn = "'.$request->msisdn.'"';
 			}
+			if(isset($request->problem) && $request->problem != "")
+			{
+				$Where .= ' and problem = "'.$request->problem.'"';
+			}
+			if(isset($request->priorty_project) && $request->priorty_project != "")
+			{
+				$Where .= ' and priorty_project = "'.$request->priorty_project.'"';
+			}
 			if(isset($request->start_create_date) && $request->start_create_date != "" && isset($request->end_create_date) && $request->end_create_date != "")
 			{
 				$Where .= ' and DATE(created_at) between  "'.$request->start_create_date.'" and "'.$request->end_create_date.'"';
@@ -87,7 +95,14 @@ where ".$Where;
 			{
 				$Where .= ' and DATE(created_at) between  "'.$request->start_create_date.'" and "'.$request->end_create_date.'"';
 			}
-			
+			if(isset($request->problem) && $request->problem != "")
+			{
+				$Where .= ' and problem = "'.$request->problem.'"';
+			}
+			if(isset($request->priorty_project) && $request->priorty_project != "")
+			{
+				$Where .= ' and priorty_project = "'.$request->priorty_project.'"';
+			}
 			$info_Datas = DB::Select("select count(*) as cnt from (SELECT * FROM `ussd_users`
 where ".$Where.") data");
 			
@@ -137,6 +152,14 @@ limit ".$start.", ".$rowperpage);
 			{
 				$Where .= ' and is_paid = "'.$request->is_paid.'"';
 			}
+			if(isset($request->problem) && $request->problem != "")
+			{
+				$Where .= ' and problem = "'.$request->problem.'"';
+			}
+			if(isset($request->priorty_project) && $request->priorty_project != "")
+			{
+				$Where .= ' and priorty_project = "'.$request->priorty_project.'"';
+			}
 			if(isset($request->start_payment_date) && $request->start_payment_date != "" && isset($request->end_payment_date) && $request->end_payment_date != "")
 			{
 				$Where .= ' and DATE(payment_date) between  "'.$request->start_payment_date.'" and "'.$request->end_payment_date.'"';
@@ -184,6 +207,14 @@ where ".$Where;
 			if(isset($request->is_paid) && $request->is_paid != "")
 			{
 				$Where .= ' and is_paid = "'.$request->is_paid.'"';
+			}
+			if(isset($request->problem) && $request->problem != "")
+			{
+				$Where .= ' and problem = "'.$request->problem.'"';
+			}
+			if(isset($request->priorty_project) && $request->priorty_project != "")
+			{
+				$Where .= ' and priorty_project = "'.$request->priorty_project.'"';
 			}
 			if(isset($request->start_payment_date) && $request->start_payment_date != "" && isset($request->end_payment_date) && $request->end_payment_date != "")
 			{

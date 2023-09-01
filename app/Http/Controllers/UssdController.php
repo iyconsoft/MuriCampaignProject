@@ -295,17 +295,14 @@ class UssdController extends Controller
 			$decodeData = $decodeData->eventData;
 		}
 		\Log::info('MonnifyCallback: '.$json);
-		
-		$ussdUser->payment_reference = $uniqeID;
-		$ussdUser->Save();
-		
+			
 		$info_UssdUser = UssdUser::Where('payment_reference', $decodeData->paymentReference)->First();
 		$info_UssdUser->is_paid = "1";
 		$info_UssdUser->Save();
 		
 		$Message = "Thank you ".$info_UssdUser->name." for your contribution towards rescuing our state. Together a new Kogi is possible.".$this->newLine."From: Alh. Murtala Yakubu Ajaka (MURI)";
 		
-		if(env('APP_ENV')=="production" && 1==0)
+		if(env('APP_ENV')=="production")
 		{
 			\Log::info("Send SMS: http://3.131.19.214:8802/?phonenumber=234".substr($info_UssdUser->msisdn,-10)."&text=".urlencode($Message)."&sender=SELFSERVE&user=selfserve&password=1234567891");
 			file_get_contents("http://3.131.19.214:8802/?phonenumber=234".substr($info_UssdUser->msisdn,-10)."&text=".urlencode($Message)."&sender=SELFSERVE&user=selfserve&password=1234567891");

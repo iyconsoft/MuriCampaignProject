@@ -30,7 +30,15 @@
                          <input type="text" class="form-control" name="msisdn" id="msisdn"   />
                       </div>
                       <div class="col-md-3">
-                      	<label for="is_paid">Is Paid:</label>
+                         <label for="charge_type">Problem:</label>
+                         <input type="text" class="form-control" name="problem" id="problem"   />
+                      </div>
+                      <div class="col-md-3">
+                         <label for="charge_type">Project:</label>
+                         <input type="text" class="form-control" name="priorty_project" id="priorty_project"   />
+                      </div>
+                      <div class="col-md-3">
+                      	<label for="is_paid">Payment:</label>
                          <select id="is_paid" name="is_paid" class="form-control">
                          	<option value="">Select</option>
                             <option value="1">Yes</option>
@@ -61,7 +69,7 @@
                     <th>Name</th>
                     <th>Local govt</th>
                     <th>Amount</th>
-                    <th>Is Paid</th>
+                    <th>Payment</th>
                     <th>Payment Date</th>
                    </tr>
                 </thead>
@@ -110,6 +118,8 @@ $('.searchBtn').on('click', function (e) {
 	
 	var msisdn = $("#msisdn").val();
 	var is_paid = $("#is_paid").val();
+	var problem = $("#problem").val();
+	var priorty_project = $("#priorty_project").val();
 	var start_payment_date = "";
 	var end_payment_date = "";
 	if($('#payment_date').val() != "")
@@ -117,7 +127,7 @@ $('.searchBtn').on('click', function (e) {
 		start_payment_date = $('#payment_date').data('daterangepicker').startDate.format('YYYY-MM-DD');
 		end_payment_date = $('#payment_date').data('daterangepicker').endDate.format('YYYY-MM-DD');
 	}
-	$('#dataTable').DataTable().ajax.url( "{{url('payment/grid')}}/?searchItem=true&msisdn="+msisdn+"&start_payment_date="+start_payment_date+"&end_payment_date="+end_payment_date+"&is_paid="+is_paid).load();
+	$('#dataTable').DataTable().ajax.url( "{{url('payment/grid')}}/?searchItem=true&msisdn="+msisdn+"&problem="+problem+"&priorty_project="+priorty_project+"&start_payment_date="+start_payment_date+"&end_payment_date="+end_payment_date+"&is_paid="+is_paid).load();
 
 });
 
@@ -131,6 +141,8 @@ $('.clearBtn').on('click', function (e) {
 $(document).on('click', '#Export', function (e) { 
 	var msisdn = $("#msisdn").val();
 	var is_paid = $("#is_paid").val();
+	var problem = $("#problem").val();
+	var priorty_project = $("#priorty_project").val();
 	var start_payment_date = "";
 	var end_payment_date = "";
 	if($('#payment_date').val() != "")
@@ -139,7 +151,7 @@ $(document).on('click', '#Export', function (e) {
 		end_payment_date = $('#payment_date').data('daterangepicker').endDate.format('YYYY-MM-DD');
 	}
 	
-	var URL = "{{url('payment/export')}}/?searchItem=true&msisdn="+msisdn+"&start_payment_date="+start_payment_date+"&end_payment_date="+end_payment_date+"&is_paid="+is_paid;
+	var URL = "{{url('payment/export')}}/?searchItem=true&msisdn="+msisdn+"&problem="+problem+"&priorty_project="+priorty_project+"&start_payment_date="+start_payment_date+"&end_payment_date="+end_payment_date+"&is_paid="+is_paid;
 	
 	downloadURI(URL);
 });

@@ -24,7 +24,7 @@ class PaymentExport implements FromQuery, WithHeadings
 			"Name",
 			"Local govt",
 			"Amount",
-			"Is Paid",
+			"Payment",
 			"Payment Date"
         ];
     }
