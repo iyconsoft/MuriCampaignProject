@@ -58,7 +58,7 @@ class UssdController extends Controller
 				
 				case '2':
 					
-					$Message = "Please Enter a problem in your community you would want MURI to address if he wins".$this->newLine."1. Road".$this->newLine."2. Water".$this->newLine."3. Health Care".$this->newLine."4. Education".$this->newLine."5. Electricity".$this->newLine."6. Security".$this->newLine."7. Others".$this->newLine;
+					$Message = "Please Enter a problem in your community".$this->newLine."1. Road".$this->newLine."2. Water".$this->newLine."3. Health Care".$this->newLine."4. Education".$this->newLine."5. Electricity".$this->newLine."6. Security".$this->newLine."7. Others".$this->newLine;
 					
 					
 					$output['operation'] = "continue";		
