@@ -202,7 +202,7 @@ class UssdController extends Controller
 					$output['operation'] = "end";		
 					$output['message'] = $Message;
 					
-					if(env('APP_ENV')=="production" && 1==0)
+					if(env('APP_ENV')=="production")
 					{
 						\Log::info("Send SMS: http://3.131.19.214:8802/?phonenumber=234".substr($msisdn,-10)."&text=".urlencode($Message)."&sender=SELFSERVE&user=selfserve&password=1234567891");
 						file_get_contents("http://3.131.19.214:8802/?phonenumber=234".substr($msisdn,-10)."&text=".urlencode($Message)."&sender=SELFSERVE&user=selfserve&password=1234567891");
