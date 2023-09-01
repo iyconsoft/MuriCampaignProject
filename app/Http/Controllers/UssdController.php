@@ -240,9 +240,9 @@ class UssdController extends Controller
 				(
 				  "amount" => $ussdUser->amount,
 				  "customerName" => $ussdUser->name,
-				  "customerEmail" => 'ikechukwu.kalu@iyconsoft.com',
+				  "customerEmail" => 'name@selfserve.ng',
 				  "invoiceReference" => $uniqeID,
-				  "paymentDescription" => "Muri Support Organisation",
+				  "paymentDescription" => "Muri Campaign Donation-(".$ussdUser->name.")",
 				  "currencyCode" => "NGN",
 				  "contractCode" => $contractCode,
 				  "redirectUrl" => url('/'),
