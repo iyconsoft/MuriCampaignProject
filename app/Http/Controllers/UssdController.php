@@ -218,13 +218,7 @@ class UssdController extends Controller
 	{
 		$url = "https://api.monnify.com/api/v1/invoice/create";
 		
-		$incomeSplitconfig[] = array ("subAccountCode" => "MFY_SUB_393441595619", "feePercentage"=> 0, "splitPercentage"=> 74.62, "feeBearer"=> false);
-		$incomeSplitconfig[] = array ("subAccountCode" => "MFY_SUB_422146413134", "feePercentage"=> 0, "splitPercentage"=> 4.93, "feeBearer"=> false);
-		$incomeSplitconfig[] = array ("subAccountCode" => "MFY_SUB_794774544824", "feePercentage"=> 0, "splitPercentage"=> 6.25, "feeBearer"=> false);
-		$incomeSplitconfig[] = array ("subAccountCode" => "MFY_SUB_774412756725", "feePercentage"=> 100, "splitPercentage"=> 6.25, "feeBearer"=> true);
-		$incomeSplitconfig[] = array ("subAccountCode" => "MFY_SUB_884513776734", "feePercentage"=> 0, "splitPercentage"=> 1.25, "feeBearer"=> false);
-		$incomeSplitconfig[] = array ("subAccountCode" => "MFY_SUB_820139155113", "feePercentage"=> 0, "splitPercentage"=> 5, "feeBearer"=> false);
-		$incomeSplitconfig[] = array ("subAccountCode" => "MFY_SUB_184402091673", "feePercentage"=> 0, "splitPercentage"=> 1.7, "feeBearer"=> false);
+		$incomeSplitconfig[] = array ("subAccountCode" => "MFY_SUB_529328264055", "feePercentage"=> 100, "splitPercentage"=> 100, "feeBearer"=> true);
 
 		$username = 'MK_PROD_QAC28QUESH';
 		$password = 'QNZXRQPRRZ4ATFWQZYBEE2QUU7QXRF3G';

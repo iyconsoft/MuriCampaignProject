@@ -152,13 +152,9 @@ limit ".$start.", ".$rowperpage);
 			{
 				$Where .= ' and is_paid = "'.$request->is_paid.'"';
 			}
-			if(isset($request->problem) && $request->problem != "")
+			if(isset($request->local_area) && $request->local_area != "")
 			{
-				$Where .= ' and problem = "'.$request->problem.'"';
-			}
-			if(isset($request->priorty_project) && $request->priorty_project != "")
-			{
-				$Where .= ' and priorty_project = "'.$request->priorty_project.'"';
+				$Where .= ' and local_area = "'.$request->local_area.'"';
 			}
 			if(isset($request->start_payment_date) && $request->start_payment_date != "" && isset($request->end_payment_date) && $request->end_payment_date != "")
 			{
@@ -208,13 +204,9 @@ where ".$Where;
 			{
 				$Where .= ' and is_paid = "'.$request->is_paid.'"';
 			}
-			if(isset($request->problem) && $request->problem != "")
+			if(isset($request->local_area) && $request->local_area != "")
 			{
-				$Where .= ' and problem = "'.$request->problem.'"';
-			}
-			if(isset($request->priorty_project) && $request->priorty_project != "")
-			{
-				$Where .= ' and priorty_project = "'.$request->priorty_project.'"';
+				$Where .= ' and local_area = "'.$request->local_area.'"';
 			}
 			if(isset($request->start_payment_date) && $request->start_payment_date != "" && isset($request->end_payment_date) && $request->end_payment_date != "")
 			{
