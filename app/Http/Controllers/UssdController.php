@@ -44,7 +44,7 @@ class UssdController extends Controller
 			{
 				case '1':
 					
-					$Message = "Please enter your Local Government Area";
+					$Message = "Please enter your LGA & Ward";
 					
 					
 					$output['operation'] = "continue";		
@@ -139,7 +139,7 @@ class UssdController extends Controller
 						break;
 					}
 					
-					$Message = "Hon. Muri will personally acknowledge your support".$this->newLine."Select Amount".$this->newLine."1. 200".$this->newLine."2. 300".$this->newLine."3. 400".$this->newLine."4. 500".$this->newLine."5. 1000";
+					$Message = "Hon. Muri will personally acknowledge your support".$this->newLine."Select Amount".$this->newLine."1. 200".$this->newLine."2. 500".$this->newLine."3. 1000".$this->newLine."4. 2000".$this->newLine."5. 5000";
 					
 					$output['operation'] = "continue";		
 					$output['message'] = $Message;
@@ -159,16 +159,16 @@ class UssdController extends Controller
 							$amount = 200;
 						break;
 						case '2':
-							$amount = 300;
-						break;
-						case '3':
-							$amount = 400;
-						break;
-						case '4':
 							$amount = 500;
 						break;
-						case '5':
+						case '3':
 							$amount = 1000;
+						break;
+						case '4':
+							$amount = 2000;
+						break;
+						case '5':
+							$amount = 5000;
 						break;
 					}
 					
