@@ -44,7 +44,7 @@ class UssdController extends Controller
 			{
 				case '1':
 					
-					$Message = "Please enter your LGA & Ward";
+					$Message = "Please enter your Local Government/ Ward";
 					
 					
 					$output['operation'] = "continue";		
@@ -58,7 +58,7 @@ class UssdController extends Controller
 				
 				case '2':
 					
-					$Message = "Please Enter a problem in your community".$this->newLine."1. Road".$this->newLine."2. Water".$this->newLine."3. Health Care".$this->newLine."4. Education".$this->newLine."5. Electricity".$this->newLine."6. Security".$this->newLine."7. Others".$this->newLine;
+					$Message = "Please Enter a problem in your community".$this->newLine."1. Road".$this->newLine."2. Water".$this->newLine."3. Health Care".$this->newLine."4. Education".$this->newLine."5. Electricity".$this->newLine."6. Security";
 					
 					
 					$output['operation'] = "continue";		
@@ -99,8 +99,7 @@ class UssdController extends Controller
 					}
 
 					
-					$Message = "Select Project that requires Urgent Government Attention".$this->newLine."1. Flood Hazard".$this->newLine."2. Health Care".$this->newLine."3. Education".$this->newLine."4. Electricity".$this->newLine."5. Security".$this->newLine."6. Food Security".$this->newLine."7. Others";
-					
+					$Message = "Lokoja Priority Roads".$this->newLine."1. Otok/Ganaja bypass".$this->newLine."2. Otokiti/Zango Road".$this->newLine."3. Nyama Nyama Bypass".$this->newLine."4. Zone 8/H of Ass Road".$this->newLine."5. All of the above";
 					
 					$output['operation'] = "continue";		
 					$output['message'] = $Message;
@@ -113,33 +112,27 @@ class UssdController extends Controller
 				
 				case '5':
 					
-					$priorty_project = 'Others';
+					$priorty_project = 'All of the above';
 					switch($message)
 					{
 						case '1':
-							$priorty_project = 'Flood Hazard';
+							$priorty_project = 'Otok/Ganaja bypass';
 						break;
 						case '2':
-							$priorty_project = 'Health Care';
+							$priorty_project = 'Otokiti/Zango Road';
 						break;
 						case '3':
-							$priorty_project = 'Education';
+							$priorty_project = 'Zone 8/H of Ass Road';
 						break;
 						case '4':
 							$priorty_project = 'Electricity';
 						break;
 						case '5':
-							$priorty_project = 'Security';
-						break;
-						case '6':
-							$priorty_project = 'Food Security';
-						break;
-						case '7':
-							$priorty_project = 'Others';
+							$priorty_project = 'All of the above';
 						break;
 					}
 					
-					$Message = "Hon. Muri will personally acknowledge your support".$this->newLine."Select Amount".$this->newLine."1. 200".$this->newLine."2. 500".$this->newLine."3. 1000".$this->newLine."4. 2000".$this->newLine."5. 5000";
+					$Message = "Hon. Muri will personally acknowledge your support".$this->newLine."Select Amount".$this->newLine."1. 500".$this->newLine."2. 1,000".$this->newLine."3. 2,000".$this->newLine."4. 5,000".$this->newLine."5. 10,000";
 					
 					$output['operation'] = "continue";		
 					$output['message'] = $Message;
@@ -156,19 +149,19 @@ class UssdController extends Controller
 					switch($message)
 					{
 						case '1':
-							$amount = 200;
-						break;
-						case '2':
 							$amount = 500;
 						break;
-						case '3':
+						case '2':
 							$amount = 1000;
 						break;
-						case '4':
+						case '3':
 							$amount = 2000;
 						break;
-						case '5':
+						case '4':
 							$amount = 5000;
+						break;
+						case '5':
+							$amount = 10000;
 						break;
 					}
 					
@@ -197,7 +190,7 @@ class UssdController extends Controller
 						$account_no = $MonifyAccount['responseBody']['accountNumber'];
 						$bankName = $MonifyAccount['responseBody']['bankName'];
 					}
-					$Message = "Please, Pay #".$amount." in ".$bankName." Account: ".$account_no." (SDP-Murtala Yakubu Ajaka Gubernatorial Campaign Council) via transfer, POS, or ATM";
+					$Message = "Thank you James Lucky for your pledge. Please, Pay #".$amount." in ".$bankName." Account: ".$account_no." (SDP-Murtala Yakubu Ajaka Gubernatorial Campaign Council) via transfer, POS, or ATM";
 					
 					$output['operation'] = "end";		
 					$output['message'] = $Message;
@@ -224,7 +217,7 @@ class UssdController extends Controller
 		$password = 'QNZXRQPRRZ4ATFWQZYBEE2QUU7QXRF3G';
 		$contractCode = "768651769665";
 		
-		$expiryDate = date("Y-m-d H:i:s",strtotime(date("Y-m-d H:i:s")." +20480 minutes"));
+		$expiryDate = date("Y-m-d H:i:s",strtotime('30-11-2023'));
 		$uniqeID = uniqid();
 		
 		$ussdUser->payment_reference = $uniqeID;
@@ -236,7 +229,7 @@ class UssdController extends Controller
 				  "customerName" => $ussdUser->name,
 				  "customerEmail" => 'name@selfserve.ng',
 				  "invoiceReference" => $uniqeID,
-				  "paymentDescription" => "Muri Campaign Donation-(".$ussdUser->name.")",
+				  "description" => "Muri Campaign Donation-(".$ussdUser->name.")",
 				  "currencyCode" => "NGN",
 				  "contractCode" => $contractCode,
 				  "redirectUrl" => url('/'),
