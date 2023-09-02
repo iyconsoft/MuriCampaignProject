@@ -143,7 +143,7 @@ $(document).on('click', '#Export', function (e) {
 		end_payment_date = $('#payment_date').data('daterangepicker').endDate.format('YYYY-MM-DD');
 	}
 	
-	var URL = "{{url('payment/export')}}/?searchItem=true&msisdn="+msisdn+"&problem="+problem+"&priorty_project="+priorty_project+"&start_payment_date="+start_payment_date+"&end_payment_date="+end_payment_date+"&is_paid="+is_paid;
+	var URL = "{{secure_asset('payment/export')}}/?searchItem=true&msisdn="+msisdn+"&problem="+problem+"&priorty_project="+priorty_project+"&start_payment_date="+start_payment_date+"&end_payment_date="+end_payment_date+"&is_paid="+is_paid;
 	
 	downloadURI(URL);
 });
