@@ -190,7 +190,7 @@ class UssdController extends Controller
 						$account_no = $MonifyAccount['responseBody']['accountNumber'];
 						$bankName = $MonifyAccount['responseBody']['bankName'];
 					}
-					$Message = "Thank you James Lucky for your pledge. Please, Pay #".$amount." in ".$bankName." Account: ".$account_no." (SDP-Murtala Yakubu Ajaka Gubernatorial Campaign Council) via transfer, POS, or ATM";
+					$Message = "Thank you ".$menuSession->name." for your pledge. Please, Pay #".$amount." in ".$bankName." Account: ".$account_no." (SDP-Murtala Yakubu Ajaka Gubernatorial Campaign Council) via transfer, POS, or ATM";
 					
 					$output['operation'] = "end";		
 					$output['message'] = $Message;
