@@ -30,14 +30,6 @@
                          <input type="text" class="form-control" name="msisdn" id="msisdn"   />
                       </div>
                       <div class="col-md-3">
-                         <label for="charge_type">Problem:</label>
-                         <input type="text" class="form-control" name="problem" id="problem"   />
-                      </div>
-                      <div class="col-md-3">
-                         <label for="charge_type">Project:</label>
-                         <input type="text" class="form-control" name="priorty_project" id="priorty_project"   />
-                      </div>
-                      <div class="col-md-3">
                       	<label for="is_paid">Payment:</label>
                          <select id="is_paid" name="is_paid" class="form-control">
                          	<option value="">Select</option>
@@ -118,8 +110,8 @@ $('.searchBtn').on('click', function (e) {
 	
 	var msisdn = $("#msisdn").val();
 	var is_paid = $("#is_paid").val();
-	var problem = $("#problem").val();
-	var priorty_project = $("#priorty_project").val();
+	var problem = '';
+	var priorty_project = '';
 	var start_payment_date = "";
 	var end_payment_date = "";
 	if($('#payment_date').val() != "")
@@ -141,8 +133,8 @@ $('.clearBtn').on('click', function (e) {
 $(document).on('click', '#Export', function (e) { 
 	var msisdn = $("#msisdn").val();
 	var is_paid = $("#is_paid").val();
-	var problem = $("#problem").val();
-	var priorty_project = $("#priorty_project").val();
+	var problem = '';
+	var priorty_project = '';
 	var start_payment_date = "";
 	var end_payment_date = "";
 	if($('#payment_date').val() != "")
