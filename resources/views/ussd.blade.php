@@ -143,7 +143,7 @@ $(document).on('click', '#Export', function (e) {
 		end_create_date = $('#create_date').data('daterangepicker').endDate.format('YYYY-MM-DD');
 	}
 	
-	var URL = "{{url('ussd/export')}}/?searchItem=true&msisdn="+msisdn+"&problem="+problem+"&priorty_project="+priorty_project+"&start_create_date="+start_create_date+"&end_create_date="+end_create_date;
+	var URL = "{{url('ussd/export')}}/??searchItem=true&msisdn="+msisdn+"&problem="+problem+"&priorty_project="+priorty_project+"&start_create_date="+start_create_date+"&end_create_date="+end_create_date;
 	
 	downloadURI(URL);
 });
