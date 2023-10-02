@@ -191,12 +191,21 @@ $('.daterangepicker2').daterangepicker({
   }
 });
 $('.daterangepicker2').val(""); 
-function downloadURI(uri) 
+function downloadURI(urlToSend, fileName) 
 {
-	var link = document.createElement("a");
-	link.download = "Download";
-	link.href = uri;
-	link.click();
+	var fileName = fileName;
+	var req = new XMLHttpRequest();
+     req.open("GET", urlToSend, true);
+     req.responseType = "blob";
+     req.onload = function (event) {
+         var blob = req.response;
+         var link=document.createElement('a');
+         link.href=window.URL.createObjectURL(blob);
+         link.download=fileName;
+         link.click();
+     };
+
+     req.send();
 }
 </script>
 </body>

@@ -145,7 +145,7 @@ class UssdController extends Controller
 				
 				case '6':
 					
-					$amount = 200;
+					$amount = $message;
 					switch($message)
 					{
 						case '1':

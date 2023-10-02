@@ -58,6 +58,14 @@
              </div>
           </div>
           <div class="table-responsive">
+          	 <div class="row">
+           		<div class="col-md-12">
+                	<span class="float-right">
+                    <b>Total Records: <span id="totalRecords"></span></b> |
+                    <b>Total Revenue: N<span id="totalAmt"></span></b>
+                    </span>
+                </div>
+          	 </div>
              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                    <tr>
@@ -96,6 +104,9 @@ var table = $('#dataTable').DataTable({
 		  'headers': {
 			  'X-CSRF-TOKEN': '{{ csrf_token() }}'
 		  },
+		complete: function (data) {
+				ajaxLoadComplete(data['responseJSON']);
+			},
 	},
 	"columns": [
 		{ data: 'msisdn' },
@@ -109,6 +120,13 @@ var table = $('#dataTable').DataTable({
 	dom: 'rtlip',
 	order: [[5, 'desc']]
 });
+
+function ajaxLoadComplete(data)
+{
+	console.log(data)
+	$("#totalRecords").html(data.iTotalRecords);
+	$("#totalAmt").html(data.totalAmt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+}
  
 $('.searchBtn').on('click', function (e) { 
 	
@@ -147,7 +165,7 @@ $(document).on('click', '#Export', function (e) {
 	
 	var URL = "{{url('payment/export')}}/?searchItem=true&msisdn="+msisdn+"&local_area="+local_area+"&start_payment_date="+start_payment_date+"&end_payment_date="+end_payment_date+"&is_paid="+is_paid;
 	
-	downloadURI(URL);
+	downloadURI(URL, 'Payment.xlsx');
 });
  
 

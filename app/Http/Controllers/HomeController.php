@@ -222,7 +222,9 @@ where ".$Where.") data");
 where ".$Where."
 order by $columnName $columnSortOrder
 limit ".$start.", ".$rowperpage);
-			//$columnName, $columnSortOrder
+			
+			$totalAmt = DB::Select("SELECT sum(amount) as amount FROM `ussd_users` where ".$Where."")[0]->amount;
+ 
 
 		}
 		else
@@ -242,7 +244,8 @@ limit ".$start.", ".$rowperpage);
 			"draw" => intval($draw),
 			"iTotalRecords" => $totalRecords,
 			"iTotalDisplayRecords" => $totalRecordswithFilter,
-			"aaData" => $info_Datas,			
+			"aaData" => $info_Datas,	
+			"totalAmt" => $totalAmt
 		);
     }
 }
